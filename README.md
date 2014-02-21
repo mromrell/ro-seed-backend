@@ -90,18 +90,22 @@ heroku create my-unique-app-name-frontend
     // navigate to your 'ro-seed-backendend' folder
 heroku create my-unique-app-name-backend
 ```
-- In PyCharm > dev.py add both of your newly created Heroku Apps (ex: 'my-unique-app-name-frontend.herokuapp.com')
+- In PyCharm > base.py 
+-- Add both of your newly created Heroku App domains (ex: 'my-unique-app-name-frontend.herokuapp.com', 'my-unique-app-name-backend.herokuapp.com') to CORS ORIGIN WHITELIST 
+-- Add your newly created backend Heroku App domain (ex: 'my-unique-app-name-backend.herokuapp.com') to ALLOWED HOSTS
 - Commit your changes with Git then Go back to the terminal and run:
 ```
-cd /path/that/will/hold/repository
-git clone git@github.com:test.git # using the same name as above for an example
-cd test
-heroku create # this will create a new heroku app and attach it as a remote repository
-```
-
-- Copy the heroku app domain to the ALLOWED_HOSTS array in project/settings/test.py
-
-```
+    // navigate to your 'ro-seed-frontend' folder and commit your changes
 git push heroku master
-heroku open # run this once the previous command finishes, it may take a minute
+    // navigate to your 'ro-seed-backend' folder and commit your changes
+git push heroku master
+heroku run python manage.py schemamigration public --init
+heroku run python manage.py syncdb
+     // Select "no." Do not create a superuser at this time.
+heroku run python manage.py migrate
+heroku run python manage.py createsuperuser
+
+heroku open 
+    // run this once the previous command finishes, it may take a minute
+    // Check the Django server at http://my-unique-app-name-backend.herokuapp.com/admin/
 ```
