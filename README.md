@@ -61,8 +61,8 @@ In the CLI run the following command:
 ```
 createdb MyDatabaseName
 ```
-Go back to PyCharm > open dev.py and set the database name to 'MyDatabaseName' (or whatever you called it in the step above) and set the database user (on a Mac this is usually the user of the computer you are logged in with)
-Got back to the CLI run the following commands:
+- Go back to PyCharm > open dev.py and set the database name to 'MyDatabaseName' (or whatever you called it in the step above) and set the database user (on a Mac this is usually the user of the computer you are logged in with)
+- Go back to the CLI run the following commands:
 ```
 python manage.py schemamigration public --init
 python manage.py syncdb
@@ -78,10 +78,20 @@ python manage.py schemamigration public —-auto // Nothing seems to have change
 
 Deploying to Heroku
 -------------------
+
 - Create a new heroku account at heroku.com
+- Make sure you've downloaded and installed the Heroku toolkit - https://toolbelt.heroku.com/
 - Open up your terminal
 - Run the following commands
 
+```
+    // navigate to your 'ro-seed-frontend' folder
+heroku create my-unique-app-name-frontend
+    // navigate to your 'ro-seed-backendend' folder
+heroku create my-unique-app-name-backend
+```
+- In PyCharm > dev.py add both of your newly created Heroku Apps (ex: 'my-unique-app-name-frontend.herokuapp.com')
+- Commit your changes with Git then Go back to the terminal and run:
 ```
 cd /path/that/will/hold/repository
 git clone git@github.com:test.git # using the same name as above for an example
