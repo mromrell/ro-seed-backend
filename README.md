@@ -39,8 +39,15 @@ Setup Django Support in Pycharm.
 - Apply Settings and close Pycharm Preferences
 
 In Pycharm click the little dropdown arrow in the menu and choose 'Edit Configurations'
-- click the + sign > Choose 'Django Server' > Name it whatever you'd like > ensure the port is 8001 and that the Python interpreter is set to your virtual environment
-- click the + sign > Choose 'Node.js
+- click the + sign > Choose 'Django Server'
+-- Name it whatever you'd like
+-- ensure the port is 8001 
+-- ensure that the Python interpreter is set to your virtual environment
+-- Apply changes
+- click the + sign > Choose 'Node.js'
+-- Working directory should be: 'MyProject/ro-seed-frontend' 
+-- JavaScript File should be: 'server/web-server.js'
+-- Apply changes and click OK
 
 Go to your CLI/terminal and activate your virtual environment by navigating to the file where you created (remember the step above). Go to the <projectName>/bin folder then run '. activate' and you should see your command line prompt prefaced with (Project Name)...
 
@@ -50,16 +57,22 @@ In your front end folder, run "npm install."
 Setting up your database
 -------------------------
 
-In the CLI run the following commands:
+In the CLI run the following command:
 ```
-createdb databasename
-dev.py change db name and username
+createdb MyDatabaseName
+```
+Go back to PyCharm > open dev.py and set the database name to 'MyDatabaseName' (or whatever you called it in the step above) and set the database user (on a Mac this is usually the user of the computer you are logged in with)
+Got back to the CLI run the following commands:
+```
 python manage.py schemamigration public --init
 python manage.py syncdb
-     Select "no." Do not create a superuser at this time.
+     // Select "no." Do not create a superuser at this time.
 python manage.py migrate
 python manage.py createsuperuser
-     if working with others later in the project (perhaps via Github), they may make updates to the database (models.py file) in which case you'll need to update your database using the following command:
+```
+
+```
+// if working with others later in the project (perhaps via Github), they may make updates to the database (models.py file) in which case you'll need to update your database using the following command:
 python manage.py schemamigration public —-auto // Nothing seems to have changed.
 ```
 
