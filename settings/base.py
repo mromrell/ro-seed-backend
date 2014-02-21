@@ -27,7 +27,7 @@ REST_FRAMEWORK = {
     )
 }
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 # AUTH_USER_MODEL = 'public.User'
