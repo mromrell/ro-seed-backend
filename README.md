@@ -62,6 +62,7 @@ In the CLI run the following command:
 createdb MyDatabaseName
 ```
 - Go back to PyCharm > open dev.py and set the database name to 'MyDatabaseName' (or whatever you called it in the step above) and set the database user (on a Mac this is usually the user of the computer you are logged in with)
+- Go to ro-seed-backend/apps/public and delete the 'migrations' folder
 - Go back to the CLI run the following commands:
 ```
 python manage.py schemamigration public --init
@@ -73,13 +74,14 @@ python manage.py createsuperuser
 
 ```
 // if working with others later in the project (perhaps via Github), they may make updates to the database (models.py file) in which case you'll need to update your database using the following command:
-python manage.py schemamigration public —-auto // Nothing seems to have changed.
+python manage.py schemamigration public --auto
+python manage.py migrate
 ```
 
 Deploying to Heroku
 -------------------
 
-- Create a new heroku account at heroku.com
+- Create a heroku account at heroku.com
 - Make sure you've downloaded and installed the Heroku toolkit - https://toolbelt.heroku.com/
 - Open up your terminal
 - Run the following commands
