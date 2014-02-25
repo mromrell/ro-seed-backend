@@ -9,6 +9,7 @@ from rest_framework import status
 
 from rest_framework import generics
 from rest_framework import permissions
+from rest_framework.authtoken.views import ObtainAuthToken
 
 from django.contrib.auth.models import User
 from .models import *
@@ -49,6 +50,19 @@ class AddressDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     model = Address
     serializer_class = AddressSerializer
+
+class NewAuthToken(ObtainAuthToken):
+    def post(self, request):
+        serializer = self.serializer_class(data=request.DATA)
+        if serializer.is_valid():
+            token, created = Token.objects.get_or_create(user=serializer.object['user'])
+            data = {
+                'user': UserSerializer(User.objects.filter(auth_token=token)).data,
+                'token': token.key,
+            }
+            return Response(data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(('POST',))
 # @permission_classes((IsAdmin,))

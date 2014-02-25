@@ -18,6 +18,7 @@ urlpatterns = patterns(
     url(r'^users/(?P<pk>[0-9]+)$', UserDetail.as_view(), name='user-detail'),
 )
 
-urlpatterns += patterns('', url(r'^api-token-auth/', 'rest_framework.authtoken.views.obtain_auth_token'))
+# urlpatterns += patterns('', url(r'^api-token-auth/', 'rest_framework.authtoken.views.obtain_auth_token'))
+urlpatterns += patterns('', url(r'^api-token-auth/', NewAuthToken.as_view(), name='NewAuthToken'))
 
 urlpatterns = format_suffix_patterns(urlpatterns)
